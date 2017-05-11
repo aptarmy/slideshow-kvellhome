@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Now Amazing Webpage</title>
+	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="apt-slideshow">
+	<div><div class="apt-slide-item" data-image="images/Fib_Desktop-1920x1080.jpg"></div></div>
+	<div><div class="apt-slide-item" data-image="images/kaptain_desktop-1920x1080.jpg"></div></div>
+	<div><div class="apt-slide-item" data-image="images/Kube_Desktop-1920x1080.jpg"></div></div>
+	<div><div class="apt-slide-item" data-image="images/Nordik_Desktop-1920x1080.jpg"></div></div>
+	<div><div class="apt-slide-item" data-image="images/Orbit_Desktop-1920x1080.jpg"></div></div>
+	<div><div class="apt-slide-item" data-image="images/Rollo_Desktop-1920x1080.jpg"></div></div>
+	<div><div class="apt-slide-item" data-image="images/Versa_Desktop-1920x1080.jpg"></div></div>
+</div>
+
+<div class="apt-slidenav-line">
+	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-nav-lineicon"></div></div>
+</div>
+
+<div class="apt-slidenav">
+	<div><div class="apt-nav-item">Slide 1</div></div>
+	<div><div class="apt-nav-item">Slide 2</div></div>
+	<div><div class="apt-nav-item">Slide 3</div></div>
+	<div><div class="apt-nav-item">Slide 4</div></div>
+	<div><div class="apt-nav-item">Slide 5</div></div>
+	<div><div class="apt-nav-item">Slide 6</div></div>
+	<div><div class="apt-nav-item">Slide 7</div></div>
+</div>
+<div class="apt-slidenav-button"></div>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	// var reference
+	$slideshow = $('.apt-slideshow');
+	$slideNav = $('.apt-slidenav');
+	$slideNavLine = $('.apt-slidenav-line');
+
+	// var settings
+	var responsive_settings = [
+        {
+			breakpoint: 800,
+			settings: {
+				slidesToShow: 1
+			}
+        }
+    ];
+
+	// add image background to slider item
+	$slideshow.find('.apt-slide-item').each(function(i, e) {
+		console.log($(e).data('image'));
+		$(e).css({ 'background-image': 'url("' +  $(e).data('image') + '")' });
+	});
+
+	// initial slick slider
+	$slideshow.slick({
+		infinite: false,
+		autoplay: false,
+		arrows: false,
+		appendDots: false,
+		asNavFor: '.apt-slidenav, .apt-slidenav-line',
+		cssEase: "cubic-bezier(0.4, 0, 0, 1)",
+		speed: 800
+	});
+
+	// slideNavLine
+	$slideNavLine.slick({
+		infinite: false,
+		autoplay: false,
+		arrows: false,
+		appendDots: false,
+		asNavFor: '.apt-slideshow, .apt-slidenav',
+		slidesToShow: 5,
+		centerMode: true,
+		centerPadding: '0px',
+		focusOnSelect: true,
+		touchMove: false,
+		responsive: responsive_settings,
+		cssEase: "cubic-bezier(0.4, 0, 0, 1)"
+	});
+
+	// slideNavButton
+	$slideNav.slick({
+		infinite: false,
+		autoplay: false,
+		arrows: false,
+		appendDots: false,
+		asNavFor: '.apt-slideshow, .apt-slidenav-line',
+		slidesToShow: 5,
+		centerMode: true,
+		centerPadding: '0px',
+		touchMove: false,
+		responsive: responsive_settings,
+		cssEase: "cubic-bezier(0.4, 0, 0, 1)"
+	});
+
+});
+</script>
+
+</body>
+</html>

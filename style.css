@@ -1,0 +1,150 @@
+@font-face {
+    font-family: Lato;
+    src: url(fonts/Lato/Lato-Regular.ttf);
+}
+
+html, body {
+	margin: 0;
+	height: 100%;
+	font-family: Lato;
+}
+
+.apt-slideshow {
+	height: 100%;
+}
+	.apt-slideshow .slick-list {
+		height: 100%;
+	}
+		.apt-slideshow .slick-track {
+			height: 100%;
+			overflow: hidden;
+		}
+			.apt-slideshow .slick-slide {
+				width: 100%;
+				height: 100%;
+			}
+			.apt-slideshow .slick-slide:focus {
+				outline: none;
+			}
+				.apt-slideshow .apt-slide-item {
+					width: 100%;
+					height: 100%;
+					background-size: cover;
+					background-position: center;
+				}
+
+.apt-slidenav-line {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 50px;
+	height: 70px;
+}
+	.apt-slidenav-line .slick-list {
+		height: 100%;
+	}
+		.apt-slidenav-line .slick-track {
+			height: 100%;
+		}
+			.apt-slidenav-line .slick-slide {
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				cursor: pointer;
+				line-height: 70px;
+			}
+			.apt-slidenav-line .slick-slide:first-child {
+				text-align: right;
+			}
+			.apt-slidenav-line .slick-slide:last-child {
+				text-align: left;
+			}
+			.apt-slidenav-line .slick-slide::before, .apt-slidenav-line .slick-slide::after {
+				content: "";
+				display:inline-block;
+				width: calc(50% - 21px);
+				border-bottom: 1px solid white;
+				vertical-align: middle;
+			}
+			.apt-slidenav-line .slick-slide:first-child:before {
+				content: none;
+			}
+			.apt-slidenav-line .slick-slide:last-child:after {
+				content: none;
+			}
+			.apt-slidenav-line .slick-slide:focus {
+				outline: none;
+			}
+				.apt-slidenav-line .slick-slide .apt-nav-lineicon {
+					position: relative;
+					display: inline-block;
+					margin: 0 15px 0;
+					width: 12px;
+					height: 12px;
+					background-color: white;
+					border-radius: 100%;
+					vertical-align: middle;
+				}
+				.apt-slidenav-line .slick-slide .apt-nav-lineicon:before {
+					content: "";
+					position: absolute;
+					width: 60px;
+					height: 60px;
+					border-radius: 100%;
+					transition: all .3s cubic-bezier(.4,0,0,1);
+					transition: all .3s cubic-bezier(.4,0,0,1);
+					transition: all .3s cubic-bezier(.4,0,0,1),-webkit-transform .3s cubic-bezier(.4,0,0,1);
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%) scale(0);
+					border: 3px solid white;
+					border-radius: 100%;
+				}
+				.apt-slidenav-line .slick-slide:hover .apt-nav-lineicon:before {
+					transform: translate(-50%, -50%) scale(1);
+				}
+
+.apt-slidenav-button {
+	background-color: #101010;
+	width: 200px;
+	height: 70px;
+	border-radius: 100px;
+	position: fixed;
+	left: 50%; bottom: 50px; transform: translateX(-50%) scale(1);
+	z-index: 0;
+	transition: all .3s cubic-bezier(.4,0,0,1);
+	transition: all .3s cubic-bezier(.4,0,0,1);
+	transition: all .3s cubic-bezier(.4,0,0,1),-webkit-transform .3s cubic-bezier(.4,0,0,1);
+}
+.apt-slidenav-button:hover {
+	transform: translateX(-50%) scale(1.2);
+}
+.apt-slidenav {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    height: 70px;
+    -webkit-mask: url(nav-mask.svg) center no-repeat;
+    mask: url(nav-mask.svg) center no-repeat;
+    z-index: 1;
+    pointer-events: none;
+}
+	.apt-slidenav .slick-list {
+		
+	}
+		.apt-slidenav .slick-track {
+			
+		}
+			.apt-slidenav .slick-slide {
+				
+			}
+			.apt-slidenav .slick-slide:focus {
+				outline: none;
+			}
+				.apt-slidenav .apt-nav-item {
+					text-align: center;
+					line-height: 70px;
+					color: #fff;
+					font-size: 18px;
+				}
