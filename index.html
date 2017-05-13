@@ -3,12 +3,16 @@
 <head>
 	<title>My Now Amazing Webpage</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" type="text/css" href="slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
 <div class="apt-slideshow-wrap">
+	<!-- loading -->
+	<div class="apt-loading"><img src="images/LVMidea-logo.png"></div>
+
 	<div class="apt-slideshow">
 		<div><div class="apt-slide-item" data-image="images/Fib_Desktop-1920x1080.jpg"></div></div>
 		<div><div class="apt-slide-item" data-image="images/kaptain_desktop-1920x1080.jpg"></div></div>
@@ -50,14 +54,22 @@ $(document).ready(function(){
 	var apt_slideshow = {
 
 		init: function() {
+			this.hide_loading();
 			this.slide_add_image_bg();
 			this.slide_instantiate();
 			this.button_update_link();
 			this.slide_nav_handle_events();
 		},
+
+		hide_loading: function() {
+			setTimeout((function(){
+				this.references.$loading.fadeOut();
+			}).bind(this), 1000);
+		},
 		
 		// setup references
 		references: {
+			$loading: $(".apt-loading"),
 			$slideshow: $(".apt-slideshow"),
 			$slideNav: $(".apt-slidenav"),
 			$slideNavLine: $(".apt-slidenav-line"),

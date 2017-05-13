@@ -1,6 +1,6 @@
 @font-face {
-    font-family: Lato;
-    src: url(fonts/Lato/Lato-Regular.ttf);
+	font-family: Lato;
+	src: url(fonts/Lato/Lato-Regular.ttf);
 }
 
 html, body {
@@ -9,6 +9,71 @@ html, body {
 	height: 100%;
 	font-family: Lato;
 	overflow: hidden;
+}
+
+/* apt loading */
+.apt-loading {
+	position: fixed;
+	background: #f0f9ff;
+	background: -moz-radial-gradient(center, ellipse cover, #f0f9ff 0%, #cbebff 71%, #e5e5e5 99%);
+	background: -webkit-radial-gradient(center, ellipse cover, #f0f9ff 0%,#cbebff 71%,#e5e5e5 99%);
+	background: radial-gradient(ellipse at center, #f0f9ff 0%,#cbebff 71%,#e5e5e5 99%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#e5e5e5',GradientType=1 );
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	z-index: 10;
+}
+.apt-loading:before {
+	content: "";
+	display: block;
+	padding: calc(15% + 10px);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(0deg);
+	border-radius: 100%;
+	border-top: 5px solid #e69826;
+	border-right: 5px solid transparent;
+	animation: apt-loading-top 2s linear infinite;
+}
+.apt-loading:after {
+	content: "";
+	display: block;
+	padding: calc(15% + 10px);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(0deg);
+	border-radius: 100%;
+	border-bottom: 5px solid #e69826;
+	border-left: 5px solid transparent;
+	animation: apt-loading-bottom 2s linear infinite reverse;
+}
+.apt-loading img {
+	width: 15%;
+	min-width: 100px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+@keyframes apt-loading-top {
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+@keyframes apt-loading-bottom {
+	0% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
 }
 
 /* Slick Track override */
@@ -28,6 +93,7 @@ html, body {
 .apt-slideshow {
 	position: relative;
 	height: 100%;
+	wdith: 100%;
 	z-index: 0;
 }
 	.apt-slideshow .slick-list {
@@ -180,15 +246,15 @@ html, body {
 
 /* slide nav */
 .apt-slidenav {
-    position: fixed;
-    left: 0px;
-    right: 0px;
-    bottom: 50px;
-    height: 70px;
-    -webkit-mask: url(nav-mask.svg) center no-repeat;
-    mask: url(nav-mask.svg) center no-repeat;
-    z-index: 3;
-    pointer-events: none;
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	bottom: 50px;
+	height: 70px;
+	-webkit-mask: url(nav-mask.svg) center no-repeat;
+	mask: url(nav-mask.svg) center no-repeat;
+	z-index: 3;
+	pointer-events: none;
 }
 	.apt-slidenav .slick-list {
 		
