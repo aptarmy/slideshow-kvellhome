@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>My Now Amazing Webpage</title>
-	<link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -18,25 +19,25 @@
 </div>
 
 <div class="apt-slidenav-line">
-	<div><div class="apt-nav-lineicon"></div></div>
-	<div><div class="apt-nav-lineicon"></div></div>
-	<div><div class="apt-nav-lineicon"></div></div>
-	<div><div class="apt-nav-lineicon"></div></div>
-	<div><div class="apt-nav-lineicon"></div></div>
-	<div><div class="apt-nav-lineicon"></div></div>
-	<div><div class="apt-nav-lineicon"></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 1</span></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 2</span></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 3</span></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 4</span></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 5</span></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 6</span></div></div>
+	<div><div class="apt-line-icon"><span class="apt-slide-title">Slide 7</span></div></div>
 </div>
 
 <div class="apt-slidenav">
-	<div><div class="apt-nav-item">Slide 1</div></div>
-	<div><div class="apt-nav-item">Slide 2</div></div>
-	<div><div class="apt-nav-item">Slide 3</div></div>
-	<div><div class="apt-nav-item">Slide 4</div></div>
-	<div><div class="apt-nav-item">Slide 5</div></div>
-	<div><div class="apt-nav-item">Slide 6</div></div>
-	<div><div class="apt-nav-item">Slide 7</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 1</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 2</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 3</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 4</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 5</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 6</div></div>
+	<div><div class="apt-nav-item" data-link="http://www.google.com">Slide 7</div></div>
 </div>
-<div class="apt-slidenav-button"></div>
+<a class="apt-slide-button" href="#"></a>
 
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="slick/slick.min.js"></script>
@@ -44,70 +45,110 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-	// var reference
-	$slideshow = $('.apt-slideshow');
-	$slideNav = $('.apt-slidenav');
-	$slideNavLine = $('.apt-slidenav-line');
+	var apt_slideshow = {
 
-	// var settings
-	var responsive_settings = [
-        {
-			breakpoint: 800,
-			settings: {
-				slidesToShow: 1
-			}
-        }
-    ];
+		init: function() {
+			this.slide_add_image_bg();
+			this.slide_instantiate();
+			this.button_update_link();
+			this.slide_nav_handle_events();
+		},
+		
+		// setup references
+		references: {
+			$slideshow: $(".apt-slideshow"),
+			$slideNav: $(".apt-slidenav"),
+			$slideNavLine: $(".apt-slidenav-line"),
+			$slideButton: $(".apt-slide-button"),
+			$navItems: $(".apt-nav-item")
+		},
 
-	// add image background to slider item
-	$slideshow.find('.apt-slide-item').each(function(i, e) {
-		console.log($(e).data('image'));
-		$(e).css({ 'background-image': 'url("' +  $(e).data('image') + '")' });
-	});
+		// this method get called after sliders are instantiated
+		/*setup_references_after_instantiate: function() {
+			this.references.$slideNavItems = $("apt-nav-item");
+		}*/
 
-	// initial slick slider
-	$slideshow.slick({
-		infinite: false,
-		autoplay: false,
-		arrows: false,
-		appendDots: false,
-		asNavFor: '.apt-slidenav, .apt-slidenav-line',
-		cssEase: "cubic-bezier(0.4, 0, 0, 1)",
-		speed: 800
-	});
+		// setup responsive settings
+		responsive_settings: [
+	        {
+				breakpoint: 800,
+				settings: {
+					slidesToShow: 1
+				}
+	        }
+	    ],
 
-	// slideNavLine
-	$slideNavLine.slick({
-		infinite: false,
-		autoplay: false,
-		arrows: false,
-		appendDots: false,
-		asNavFor: '.apt-slideshow, .apt-slidenav',
-		slidesToShow: 5,
-		centerMode: true,
-		centerPadding: '0px',
-		focusOnSelect: true,
-		touchMove: false,
-		responsive: responsive_settings,
-		cssEase: "cubic-bezier(0.4, 0, 0, 1)",
-		speed: 800
-	});
+	    // add image background to slide
+	    slide_add_image_bg: function() {
+	    	this.references.$slideshow.find('.apt-slide-item').each(function(i, e) {
+				$(e).css({ 'background-image': 'url("' +  $(e).data('image') + '")' });
+			});
+	    },
 
-	// slideNavButton
-	$slideNav.slick({
-		infinite: false,
-		autoplay: false,
-		arrows: false,
-		appendDots: false,
-		asNavFor: '.apt-slideshow, .apt-slidenav-line',
-		slidesToShow: 5,
-		centerMode: true,
-		centerPadding: '0px',
-		touchMove: false,
-		responsive: responsive_settings,
-		cssEase: "cubic-bezier(0.4, 0, 0, 1)",
-		speed: 800
-	});
+	    slide_instantiate: function() {
+	    	// image slide
+			this.references.$slideshow.slick({
+				infinite: false,
+				autoplay: false,
+				arrows: false,
+				appendDots: false,
+				asNavFor: '.apt-slidenav, .apt-slidenav-line',
+				cssEase: "cubic-bezier(0.4, 0, 0, 1)",
+				speed: 800
+			});
+
+			// slideNavLine
+			this.references.$slideNavLine.slick({
+				infinite: false,
+				autoplay: false,
+				arrows: false,
+				appendDots: false,
+				asNavFor: '.apt-slideshow, .apt-slidenav',
+				slidesToShow: 5,
+				centerMode: true,
+				centerPadding: '0px',
+				focusOnSelect: true,
+				touchMove: false,
+				responsive: this.responsive_settings,
+				cssEase: "cubic-bezier(0.4, 0, 0, 1)",
+				speed: 800
+			});
+
+			// slideNav
+			this.references.$slideNav.slick({
+				infinite: false,
+				autoplay: false,
+				arrows: false,
+				appendDots: false,
+				asNavFor: '.apt-slideshow, .apt-slidenav-line',
+				slidesToShow: 5,
+				centerMode: true,
+				centerPadding: '0px',
+				touchMove: false,
+				responsive: this.responsive_settings,
+				cssEase: "cubic-bezier(0.4, 0, 0, 1)",
+				speed: 800
+			});
+
+			// some references need to be setup after sliders are instantiate
+			//this.setup_references_after_instantiate();
+	    },
+
+	    // update button link
+	    button_update_link: function(i) {
+	    	this.references.$slideButton.attr("href", this.references.$navItems.eq(i).data("link"));
+	    },
+
+	    // event handler for slideNav
+	    slide_nav_handle_events: function(){
+	    	this.references.$slideNav.on('afterChange', (function(event, slick, currentSlide){
+				this.button_update_link(currentSlide);
+			}).bind(this));
+	    }
+
+	};
+
+	apt_slideshow.init();
 
 });
 </script>
